@@ -1,0 +1,66 @@
+_________
+0000000000
+_________
+
+=>
+
+Afficher « <div class=« row »> »
+
+
+Faire 10 fois: (boucle for 10x)
+	afficher « <div class=« case »></div> »
+
+Afficher « </div> »
+
+_________
+0000000000
+_________
+_________
+0000000000
+_________
+_________
+0000000000
+_________
+_________
+0000000000
+_________
+_________
+0000000000
+_________
+_________
+0000000000
+_________
+_________
+0000000000
+_________
+
+Au total 10 ligne
+
+
+
+Faire 10 fois (boucle for 10x):
+
+	Afficher « <div class=« row »> »
+
+
+	Faire 10 fois: (boucle for 10x)
+		afficher « <div class=« case »></div> »
+
+	Afficher « </div> »
+
+
+
+
+        function createMap(x) {
+        for(let rows=0; rows<x; rows++) {
+            for(let columns=0; columns<x; columns++) {
+                $("#map").append('<div class="bgMap"></div>');
+            };
+        };
+        $('.bgMap').width(800/x);
+        $('.bgMap').height(800/x);
+    };
+
+    $(document).ready(function() {
+        createMap(10);
+    });
