@@ -170,17 +170,6 @@
     }
     /* Fin Génération Aléatoire du Placement des Joueurs */
 
-    /* Appel des fonctions */
-
-    $(document).ready(function() {
-        createMap(10);
-        let tableauMurs = createWalls();
-        let tableauArmes = popWeapons(tableauMurs);
-        popPlayers(tableauMurs,tableauArmes);
-    });
-
-    /* Fin Appel des fonctions */
-
 /* Fin Etape 1 */
 
 /* Etape 2 */
@@ -190,15 +179,28 @@
 /* on récupère la position du joueur et on lui propose de se déplacer sur 3 cases en haut,bas,droite,gauche. Les cases seront grisées et clickables. 
 Boucle for pour les cases grisées +1 +2 +3. */
 
-function movementChoices(popPlayers){
-    
-    let coordonéesJoueurs = [];
-
-    while(tableauJoueurs[index].x){
-
+function greyscaleAround(player) {
+    for(let i = 1; i < 4; i++){ 
+    $('.cases[x=' + (player.x + i)  + '][y=' + (player.y) + ']').addClass('grayscale');
+    $('.cases[x=' + (player.x) + '][y=' + (player.y + i) + ']').addClass('grayscale');
+    $('.cases[x=' + (player.x - i) + '][y=' + (player.y) + ']').addClass('grayscale');
+    $('.cases[x=' + (player.x) + '][y=' + (player.y - i) + ']').addClass('grayscale');
     }
-
 }
+
+function movementChoices(players){
+
+    let turnCount = 0;
+    let currentPlayer = players[0];
+        if (turnCount % 2 === 0) {  /* tour joueur 1 */
+            currentPlayer = players[0]    
+        } 
+        else {  /* tour joueur 2 */
+            currentPlayer = players[1]
+        }
+        console.log(currentPlayer)
+        greyscaleAround(currentPlayer); 
+};
 
     /* Fin Mouvements */
 
@@ -210,3 +212,18 @@ function movementChoices(popPlayers){
     /* Fin Combat */
 
 /* Fin Etape 3 */
+
+
+
+
+/* Appel des fonctions */
+
+$(document).ready(function() {
+    createMap(10);
+    let tableauMurs = createWalls();
+    let tableauArmes = popWeapons(tableauMurs);
+    let tableauJoueurs = popPlayers(tableauMurs,tableauArmes);
+    movementChoices(tableauJoueurs);
+});
+
+/* Fin Appel des fonctions */

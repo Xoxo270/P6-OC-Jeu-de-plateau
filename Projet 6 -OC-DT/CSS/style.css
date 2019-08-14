@@ -79,6 +79,10 @@ body{
         width: 300px;
     }
 
+    .grayscale{
+        filter: grayscale(100%);
+    }
+
      /* Fin Personnages */
 
     /* Armes */
