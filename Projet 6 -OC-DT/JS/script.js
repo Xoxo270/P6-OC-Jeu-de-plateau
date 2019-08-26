@@ -1,3 +1,7 @@
+
+let tableauJoueurs;
+let currentPlayer; 
+
 /* Etape 1 */
     /* Génération aléatoire de la carte */
         function createMap(x) {
@@ -88,10 +92,15 @@
                 
             };
         };
-    };
-
-    console.log(new weapons(randomNb(6)));
-    
+    }; 
+    class characters{
+        constructor(id,name,pv,arme){
+            this.id = id;
+            this.name = name;
+            this.pv = pv;
+            this.arme = arme;
+        }
+    }
     
     function popWeapons(tableauMurs){
 
@@ -131,7 +140,7 @@
         let tableauJoueurs = []
 
         while(tableauJoueurs.length<2){
-            let alea = {x:randomNb(10), y:randomNb(10)};
+            let alea = {x:randomNb(10), y:randomNb(10), name:(tableauJoueurs.length == 0 ? 'knight':'ninja')};
             let isUnique = true;
             for(let index in tableauJoueurs){
                 if((tableauJoueurs[index].x === alea.x && tableauJoueurs[index].y === alea.y) ||
@@ -168,6 +177,7 @@
          return tableauJoueurs;
 
     }
+
     /* Fin Génération Aléatoire du Placement des Joueurs */
 
 /* Fin Etape 1 */
@@ -175,32 +185,52 @@
 /* Etape 2 */
 
     /* Mouvements */
-
-/* on récupère la position du joueur et on lui propose de se déplacer sur 3 cases en haut,bas,droite,gauche. Les cases seront grisées et clickables. 
-Boucle for pour les cases grisées +1 +2 +3. */
-
 function greyscaleAround(player) {
+    
+    $('.grayscale').off('click');
+    $('.grayscale').removeClass('grayscale');
+
     for(let i = 1; i < 4; i++){ 
-    $('.cases[x=' + (player.x + i)  + '][y=' + (player.y) + ']').addClass('grayscale');
-    $('.cases[x=' + (player.x) + '][y=' + (player.y + i) + ']').addClass('grayscale');
-    $('.cases[x=' + (player.x - i) + '][y=' + (player.y) + ']').addClass('grayscale');
-    $('.cases[x=' + (player.x) + '][y=' + (player.y - i) + ']').addClass('grayscale');
+        if($('.cases[x=' + (player.x + i)  + '][y=' + (player.y) + ']').hasClass('rocks') || $('.cases[x=' + (player.x + i)  + '][y=' + (player.y) + ']').hasClass('ninja')
+        || $('.cases[x=' + (player.x + i)  + '][y=' + (player.y) + ']').hasClass('knight')) break;
+        $('.cases[x=' + (player.x + i)  + '][y=' + (player.y) + ']').addClass('grayscale');
     }
-}
+    for(let i = 1; i < 4; i++){ 
+        if($('.cases[x=' + (player.x) + '][y=' + (player.y + i) + ']').hasClass('rocks') || $('.cases[x=' + (player.x) + '][y=' + (player.y + i) + ']').hasClass('ninja')
+        || $('.cases[x=' + (player.x) + '][y=' + (player.y + i) + ']').hasClass('knight')) break;
+        $('.cases[x=' + (player.x) + '][y=' + (player.y + i) + ']').addClass('grayscale');
+    }
+    for(let i = 1; i < 4; i++){ 
+        if($('.cases[x=' + (player.x - i) + '][y=' + (player.y) + ']').hasClass('rocks') || $('.cases[x=' + (player.x - i) + '][y=' + (player.y) + ']').hasClass('ninja')
+        || $('.cases[x=' + (player.x - i) + '][y=' + (player.y) + ']').hasClass('knight')) break;
+        $('.cases[x=' + (player.x - i) + '][y=' + (player.y) + ']').addClass('grayscale');
+    }
+    for(let i = 1; i < 4; i++){ 
+        if($('.cases[x=' + (player.x) + '][y=' + (player.y - i) + ']').hasClass('rocks') || $('.cases[x=' + (player.x) + '][y=' + (player.y - i) + ']').hasClass('ninja')
+        || $('.cases[x=' + (player.x) + '][y=' + (player.y - i) + ']').hasClass('knight')) break;
+        $('.cases[x=' + (player.x) + '][y=' + (player.y - i) + ']').addClass('grayscale');
+    }
 
-function movementChoices(players){
+    $('.grayscale').on('click',function(){
 
-    let turnCount = 0;
-    let currentPlayer = players[0];
-        if (turnCount % 2 === 0) {  /* tour joueur 1 */
-            currentPlayer = players[0]    
-        } 
-        else {  /* tour joueur 2 */
-            currentPlayer = players[1]
+        if (currentPlayer.name == 'knight') {
+            $('.knight').removeClass('knight');
+            $(this).addClass('knight');
+            tableauJoueurs[0].x = parseInt($(this).attr('x'));
+            tableauJoueurs[0].y = parseInt($(this).attr('y'));
+            currentPlayer = tableauJoueurs[1];
         }
-        console.log(currentPlayer)
-        greyscaleAround(currentPlayer); 
-};
+        else {  
+            $('.ninja').removeClass('ninja');
+            $(this).addClass('ninja');
+            tableauJoueurs[1].x = parseInt($(this).attr('x'));
+            tableauJoueurs[1].y = parseInt($(this).attr('y'));
+            currentPlayer = tableauJoueurs[0];
+        }
+        greyscaleAround(currentPlayer);
+    });
+
+}
 
     /* Fin Mouvements */
 
@@ -222,8 +252,23 @@ $(document).ready(function() {
     createMap(10);
     let tableauMurs = createWalls();
     let tableauArmes = popWeapons(tableauMurs);
-    let tableauJoueurs = popPlayers(tableauMurs,tableauArmes);
-    movementChoices(tableauJoueurs);
+    tableauJoueurs = popPlayers(tableauMurs,tableauArmes);
+    currentPlayer = tableauJoueurs[0];
+    greyscaleAround(currentPlayer);
 });
 
 /* Fin Appel des fonctions */
+
+
+
+
+
+
+
+
+/*  -Faire en sorte que lorsqu'on passe sur une arme on la ramasse et ca met à jour nos dégats.
+    -On check toutes les cases sur lesquelles on passe pour voir si il y a une classe d'arme et si oui on l'ajoute .
+    -On supprime la classe d'arme de la 'case'.
+    
+    -Faire une fiche de personnage modifiable.
+*/
