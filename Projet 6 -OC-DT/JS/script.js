@@ -1,6 +1,6 @@
 
 let tableauJoueurs;
-let currentPlayer; 
+let currentPlayer;
 
 /* Etape 1 */
     /* Génération aléatoire de la carte */
@@ -18,6 +18,23 @@ let currentPlayer;
 
     /* Fin Génération aléatoire de la carte */
 
+        /* Mise à jour fiche personnages */
+        function updatePlayersStats(tableauJoueurs){  
+        
+            $('#nameJ1,#pvJ1,#armeJ1,#dgtJ1,#nameJ2,#pvJ2,#armeJ2,#dgtJ2').remove();
+    
+            $('#char1').append('<p id="nameJ1"> Nom: ' + tableauJoueurs[0].name + '</p>');
+            $('#char1').append('<p id="pvJ1"> Pv: ' + tableauJoueurs[0].pv + '</p>');
+            $('#char1').append('<p id="armeJ1"> Arme: ' + tableauJoueurs[0].arme.name + '</p>');
+            $('#char1').append('<p id="dgtJ1"> Dégats: ' + tableauJoueurs[0].arme.damage + '</p>');
+            
+            $('#char2').append('<p id="nameJ2"> Nom: ' + tableauJoueurs[1].name + '</p>');
+            $('#char2').append('<p id="pvJ2"> Pv: ' + tableauJoueurs[1].pv + '</p>');
+            $('#char2').append('<p id="armeJ2"> Arme: ' + tableauJoueurs[1].arme.name + '</p>');
+            $('#char2').append('<p id="dgtJ2"> Dégats: ' + tableauJoueurs[1].arme.damage + '</p>');
+        };
+            /* Fin Mise à jour fiche personnages */
+
     /* Fonction de génération de chiffre aléatoire */    
         function randomNb(max) {
             return Math.floor(Math.random() * Math.floor(max));
@@ -25,6 +42,8 @@ let currentPlayer;
 
     /* Fin Fonction de génération de chiffre aléatoire */
     
+
+
     /* Génération aléatoire des murs */  
         
         function createWalls() {
@@ -43,7 +62,6 @@ let currentPlayer;
                     tableauMurs.push(alea);
                 }
             };
-            console.log(tableauMurs);
             for(let index in tableauMurs){
                $('.cases[x=' + tableauMurs[index].x + '][y=' + tableauMurs[index].y + ']').addClass('rocks');
             }
@@ -52,131 +70,153 @@ let currentPlayer;
 
     /* Génération aléatoire des murs */ 
 
-    /* armes */
+
+
+    /* Armes */
     
-    class weapons{
-        constructor(id) {
-            this.id = id;
+        /* Constructeur d'armes avec switch */
+        class weapons{
+            constructor(id) {
+                this.id = id;
 
-            switch(this.id){
+                switch(this.id){
 
-                case 0:
-                    this.damage = 16;
-                    this.name = "axe";
-                break;
+                    case 0:
+                        this.damage = 16;
+                        this.name = "axe";
+                    break;
 
-                case 1:
-                    this.damage = 12;
-                    this.name = "dagger";
-                break;
-                
-                case 2:
-                    this.damage = 14;
-                    this.name = "spear";
-                break;
-                
-                case 3:
-                    this.damage = 13;
-                    this.name = "flail";
-                break;
-                
-                case 4:
-                    this.damage = 15;
-                    this.name = "longsword";
-                break;
-                
-                case 5:
-                    this.damage = 17;
-                    this.name = "crystalsword";
-                break;
-                
+                    case 1:
+                        this.damage = 12;
+                        this.name = "dagger";
+                    break;
+                    
+                    case 2:
+                        this.damage = 14;
+                        this.name = "spear";
+                    break;
+                    
+                    case 3:
+                        this.damage = 13;
+                        this.name = "flail";
+                    break;
+                    
+                    case 4:
+                        this.damage = 15;
+                        this.name = "longsword";
+                    break;
+                    
+                    case 5:
+                        this.damage = 17;
+                        this.name = "crystalsword";
+                    break;
+
+                    default:
+                        this.damage = 10;
+                        this.name = "sword";
+                };
             };
-        };
-    }; 
-    class characters{
-        constructor(id,name,pv,arme){
-            this.id = id;
-            this.name = name;
-            this.pv = pv;
-            this.arme = arme;
-        }
-    }
-    
-    function popWeapons(tableauMurs){
-
-        let tableauArmes = []
-
-        while(tableauArmes.length<4){
-            let isUnique = true;
-            let weapon = new weapons(randomNb(6));
-            let alea = {x:randomNb(10), y:randomNb(10), weapon:weapon};
-            for(let index in tableauArmes){
-                if(tableauArmes[index].x === alea.x && tableauArmes[index].y === alea.y){
-                    isUnique = false;
-                }
-            };
-            for(let index in tableauMurs){
-                if(tableauMurs[index].x === alea.x && tableauMurs[index].y === alea.y){
-                    isUnique = false;
-                }
-            }
-            if(isUnique){
-                tableauArmes.push(alea);
-            }
-        }
-        for(let index in tableauArmes){
-            $('.cases[x=' + tableauArmes[index].x + '][y=' + tableauArmes[index].y + ']').addClass('' + tableauArmes[index].weapon.name + '');
-            console.log(tableauArmes[index].weapon.name, tableauArmes[index].x, tableauArmes[index].y)
-         }
-         return tableauArmes;
+        }; 
+        /* Fin Constructeur d'armes avec switch */
         
-    };
+        function popWeapons(tableauMurs){
+
+            let tableauArmes = []
+
+            while(tableauArmes.length<4){
+                let isUnique = true;
+                let weapon = new weapons(randomNb(6));
+                let alea = {x:randomNb(10), y:randomNb(10), weapon:weapon};
+                for(let index in tableauArmes){
+                    if(tableauArmes[index].x === alea.x && tableauArmes[index].y === alea.y){
+                        isUnique = false;
+                    }
+                };
+                for(let index in tableauMurs){
+                    if(tableauMurs[index].x === alea.x && tableauMurs[index].y === alea.y){
+                        isUnique = false;
+                    }
+                }
+                if(isUnique){
+                    tableauArmes.push(alea);
+                }
+            }
+            for(let index in tableauArmes){
+                $('.cases[x=' + tableauArmes[index].x + '][y=' + tableauArmes[index].y + ']').addClass('' + tableauArmes[index].weapon.name + '');
+            }
+            return tableauArmes;
+            
+        };
 
 
-    /* Fin armes */
+    /* Fin Armes */
 
     /* Génération Aléatoire du Placement des Joueurs */
-    function popPlayers(tableauMurs,tableauArmes){
-        let tableauJoueurs = []
 
-        while(tableauJoueurs.length<2){
-            let alea = {x:randomNb(10), y:randomNb(10), name:(tableauJoueurs.length == 0 ? 'knight':'ninja')};
-            let isUnique = true;
-            for(let index in tableauJoueurs){
-                if((tableauJoueurs[index].x === alea.x && tableauJoueurs[index].y === alea.y) ||
-                (tableauJoueurs[index].x + 1 === alea.x) ||
-                (tableauJoueurs[index].x - 1 === alea.x) ||
-                (tableauJoueurs[index].y + 1 === alea.y) ||
-                (tableauJoueurs[index].y - 1 === alea.y) ){
-                    isUnique = false;
-                }
-            };
-            for(let index in tableauArmes){
-                if(tableauArmes[index].x === alea.x && tableauArmes[index].y === alea.y){
-                    isUnique = false;
-                }
-            };
-            for(let index in tableauMurs){
-                if(tableauMurs[index].x === alea.x && tableauMurs[index].y === alea.y){
-                    isUnique = false;
-                }
-            }
-            if(isUnique){
-                tableauJoueurs.push(alea);
+
+        /* Constructeur de personnage */
+        class characters{
+            constructor(id,name,pv,arme,x,y){
+                this.id = id;
+                this.name = name;
+                this.pv = pv;
+                this.arme = arme;
+                this.x = x;
+                this.y = y;
             }
         }
-        for(let index in tableauJoueurs){
-            if(index == 0){
-                $('.cases[x=' + tableauJoueurs[index].x + '][y=' + tableauJoueurs[index].y + ']').addClass('knight');
-            }
-            else{
-                $('.cases[x=' + tableauJoueurs[index].x + '][y=' + tableauJoueurs[index].y + ']').addClass('ninja');
-            }
-            
-         }
-         return tableauJoueurs;
 
-    }
+    /* Fin Constructeur de personnage */
+
+        function popPlayers(tableauMurs,tableauArmes){
+            let tableauJoueurs = []
+            let id = 1;
+
+            while(tableauJoueurs.length<2){
+                let alea = {x:randomNb(10), y:randomNb(10), name:(tableauJoueurs.length == 0 ? 'knight':'ninja')};
+                let isUnique = true;
+                for(let index in tableauJoueurs){
+                    if((tableauJoueurs[index].x === alea.x && tableauJoueurs[index].y === alea.y) ||
+                    (tableauJoueurs[index].x + 1 === alea.x) ||
+                    (tableauJoueurs[index].x - 1 === alea.x) ||
+                    (tableauJoueurs[index].y + 1 === alea.y) ||
+                    (tableauJoueurs[index].y - 1 === alea.y) ){
+                        isUnique = false;
+                    }
+                };
+                for(let index in tableauArmes){
+                    if(tableauArmes[index].x === alea.x && tableauArmes[index].y === alea.y){
+                        isUnique = false;
+                    }
+                };
+                for(let index in tableauMurs){
+                    if(tableauMurs[index].x === alea.x && tableauMurs[index].y === alea.y){
+                        isUnique = false;
+                    }
+                }
+                if(isUnique){
+                    tableauJoueurs.push(new characters(id, alea.name,100, new weapons(), alea.x, alea.y));
+                    id++
+                }
+            }
+            for(let index in tableauJoueurs){
+                if(index == 0){
+                    $('.cases[x=' + tableauJoueurs[index].x + '][y=' + tableauJoueurs[index].y + ']').addClass('knight');
+                }
+                else{
+                    $('.cases[x=' + tableauJoueurs[index].x + '][y=' + tableauJoueurs[index].y + ']').addClass('ninja');
+                }   
+            }
+
+            /* Ajout des stats dans le html */
+            
+            updatePlayersStats(tableauJoueurs);
+
+            /* Fin Ajout des stats dans le html */ 
+            
+            return tableauJoueurs;
+
+        }
 
     /* Fin Génération Aléatoire du Placement des Joueurs */
 
@@ -216,6 +256,7 @@ function greyscaleAround(player) {
         if (currentPlayer.name == 'knight') {
             $('.knight').removeClass('knight');
             $(this).addClass('knight');
+            checkOnSwapWeapons(tableauJoueurs[0].x,tableauJoueurs[0].y,parseInt($(this).attr('x')),parseInt($(this).attr('y')));
             tableauJoueurs[0].x = parseInt($(this).attr('x'));
             tableauJoueurs[0].y = parseInt($(this).attr('y'));
             currentPlayer = tableauJoueurs[1];
@@ -223,6 +264,7 @@ function greyscaleAround(player) {
         else {  
             $('.ninja').removeClass('ninja');
             $(this).addClass('ninja');
+            checkOnSwapWeapons(tableauJoueurs[1].x,tableauJoueurs[1].y,parseInt($(this).attr('x')),parseInt($(this).attr('y')));
             tableauJoueurs[1].x = parseInt($(this).attr('x'));
             tableauJoueurs[1].y = parseInt($(this).attr('y'));
             currentPlayer = tableauJoueurs[0];
@@ -230,7 +272,192 @@ function greyscaleAround(player) {
         greyscaleAround(currentPlayer);
     });
 
+};
+
+function checkOnSwapWeapons(initialX,initialY,cibleX,cibleY){ 
+    
+    if(initialX != cibleX){
+        if(initialX > cibleX){
+            let deplacementHaut = (initialX - cibleX);
+            
+            for(let i = 1; i <= deplacementHaut; i++){ /* On vérifie le +1 +2 +3 */
+                if($('.cases[x=' + (initialX - i) + '][y=' + (cibleY) + ']').hasClass('axe')){
+                    $(currentPlayer).removeClass('sword');  /* on retire la classe d'arme par défaut */
+                    currentPlayer.arme = new weapons(0); /* id, damage */
+                    $('.cases[x=' + (initialX - i) + '][y=' + (cibleY) + ']').removeClass('axe'); /* on retire l'arme de la map */
+                }else{};
+
+                if($('.cases[x=' + (initialX - i) + '][y=' + (cibleY) + ']').hasClass('dagger')){
+                    $(currentPlayer).removeClass('sword');
+                    $(currentPlayer).addClass('dagger');
+                    currentPlayer.arme =new weapons(1);
+                $('.cases[x=' + (initialX - i) + '][y=' + (cibleY) + ']').removeClass('dagger');
+                }else{};
+
+                if($('.cases[x=' + (initialX - i) + '][y=' + (cibleY) + ']').hasClass('spear')){
+                    $(currentPlayer).removeClass('sword');
+                    currentPlayer.arme = new weapons(2);
+                    $('.cases[x=' + (initialX - i) + '][y=' + (cibleY) + ']').removeClass('spear');
+                }else{};
+
+                if($('.cases[x=' + (initialX - i) + '][y=' + (cibleY) + ']').hasClass('flail')){
+                    $(currentPlayer).removeClass('sword');
+                    currentPlayer.arme = new weapons(3);
+                    $('.cases[x=' + (initialX - i) + '][y=' + (cibleY) + ']').removeClass('flail');
+                }else{};
+
+                if($('.cases[x=' + (initialX - i) + '][y=' + (cibleY) + ']').hasClass('longsword')){
+                    $(currentPlayer).removeClass('sword');
+                    currentPlayer.arme = new weapons(4);
+                    $('.cases[x=' + (initialX - i) + '][y=' + (cibleY) + ']').removeClass('longsword');
+                }else{};
+
+                if($('.cases[x=' + (initialX - i) + '][y=' + (cibleY) + ']').hasClass('crystalsword')){
+                    $(currentPlayer).removeClass('sword');
+                    currentPlayer.arme = new weapons(5);
+                    $('.cases[x=' + (initialX - i) + '][y=' + (cibleY) + ']').removeClass('crystalsword');
+                }else{};
+            };
+        }
+        else{
+            let deplacementBas = (cibleX - initialX);
+
+            for(let i = 1; i <= deplacementBas; i++){ /* On vérifie le +1 +2 +3 */
+
+                if($('.cases[x=' + (initialX + i) + '][y=' + (cibleY) + ']').hasClass('axe')){
+                    $(currentPlayer).removeClass('sword');  /* on retire la classe d'arme par défaut */
+                    currentPlayer.arme = new weapons(0, 16); /* id, damage */
+                    $('.cases[x=' + (initialX + i) + '][y=' + (cibleY) + ']').removeClass('axe'); /* on retire l'arme de la map */
+                }else{};
+
+                if($('.cases[x=' + (initialX + i) + '][y=' + (cibleY) + ']').hasClass('dagger')){
+                    $(currentPlayer).removeClass('sword');
+                    $(currentPlayer).addClass('dagger');
+                    currentPlayer.arme =new weapons(1, 12);
+                $('.cases[x=' + (initialX + i) + '][y=' + (cibleY) + ']').removeClass('dagger');
+                }else{};
+
+                if($('.cases[x=' + (initialX + i) + '][y=' + (cibleY) + ']').hasClass('spear')){
+                    $(currentPlayer).removeClass('sword');
+                    currentPlayer.arme = new weapons(2, 14);
+                    $('.cases[x=' + (initialX + i) + '][y=' + (cibleY) + ']').removeClass('spear');
+                }else{};
+
+                if($('.cases[x=' + (initialX + i) + '][y=' + (cibleY) + ']').hasClass('flail')){
+                    $(currentPlayer).removeClass('sword');
+                    currentPlayer.arme = new weapons(3, 13);
+                    $('.cases[x=' + (initialX + i) + '][y=' + (cibleY) + ']').removeClass('flail');
+                }else{};
+
+                if($('.cases[x=' + (initialX + i) + '][y=' + (cibleY) + ']').hasClass('longsword')){
+                    $(currentPlayer).removeClass('sword');
+                    currentPlayer.arme = new weapons(4, 15);
+                    $('.cases[x=' + (initialX + i) + '][y=' + (cibleY) + ']').removeClass('longsword');
+                }else{};
+
+                if($('.cases[x=' + (initialX + i) + '][y=' + (cibleY) + ']').hasClass('crystalsword')){
+                    $(currentPlayer).removeClass('sword');
+                    currentPlayer.arme = new weapons(5, 17);
+                    $('.cases[x=' + (initialX + i) + '][y=' + (cibleY) + ']').removeClass('crystalsword');
+                }else{};
+            };
+        }
+    }
+    else{
+        if(initialY > cibleY){
+            let deplacementGauche = (initialY - cibleY);
+
+            for(let i = 1; i <= deplacementGauche; i++){ /* On vérifie le +1 +2 +3 */
+
+                if($('.cases[x=' + (cibleX) + '][y=' + (initialY - i) + ']').hasClass('axe')){
+                    $(currentPlayer).removeClass('sword');  /* on retire la classe d'arme par défaut */
+                    currentPlayer.arme = new weapons(0, 16); /* id, damage */
+                    $('.cases[x=' + (cibleX) + '][y=' + (initialY - i) + ']').removeClass('axe'); /* on retire l'arme de la map */
+                }else{};
+
+                if($('.cases[x=' + (cibleX) + '][y=' + (initialY - i) + ']').hasClass('dagger')){
+                    $(currentPlayer).removeClass('sword');
+                    $(currentPlayer).addClass('dagger');
+                    currentPlayer.arme =new weapons(1, 12);
+                $('.cases[x=' + (cibleX) + '][y=' + (initialY - i) + ']').removeClass('dagger');
+                }else{};
+
+                if($('.cases[x=' + (cibleX) + '][y=' + (initialY - i) + ']').hasClass('spear')){
+                    $(currentPlayer).removeClass('sword');
+                    currentPlayer.arme = new weapons(2, 14);
+                    $('.cases[x=' + (cibleX) + '][y=' + (initialY - i) + ']').removeClass('spear');
+                }else{};
+
+                if($('.cases[x=' + (cibleX) + '][y=' + (initialY - i) + ']').hasClass('flail')){
+                    $(currentPlayer).removeClass('sword');
+                    currentPlayer.arme = new weapons(3, 13);
+                    $('.cases[x=' + (cibleX) + '][y=' + (initialY - i) + ']').removeClass('flail');
+                }else{};
+
+                if($('.cases[x=' + (cibleX) + '][y=' + (initialY - i) + ']').hasClass('longsword')){
+                    $(currentPlayer).removeClass('sword');
+                    currentPlayer.arme = new weapons(4, 15);
+                    $('.cases[x=' + (cibleX) + '][y=' + (initialY - i) + ']').removeClass('longsword');
+                }else{};
+
+                if($('.cases[x=' + (cibleX) + '][y=' + (initialY - i) + ']').hasClass('crystalsword')){
+                    $(currentPlayer).removeClass('sword');
+                    currentPlayer.arme = new weapons(5, 17);
+                    $('.cases[x=' + (cibleX) + '][y=' + (initialY - i) + ']').removeClass('crystalsword');
+                }else{};
+            };
+
+        }
+        else{
+            let deplacementDroite = (cibleY - initialY);
+
+            for(let i = 1; i <= deplacementDroite; i++){ /* On vérifie le +1 +2 +3 */
+
+                    if($('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').hasClass('axe')){
+                        $(currentPlayer).removeClass('sword');  /* on retire la classe d'arme par défaut */
+                        currentPlayer.arme = new weapons(0, 16); /* id, damage */
+                        $('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').removeClass('axe'); /* on retire l'arme de la map */
+                    }else{};
+
+                    if($('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').hasClass('dagger')){
+                        $(currentPlayer).removeClass('sword');
+                        $(currentPlayer).addClass('dagger');
+                        currentPlayer.arme =new weapons(1, 12);
+                    $('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').removeClass('dagger');
+                    }else{};
+
+                    if($('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').hasClass('spear')){
+                        $(currentPlayer).removeClass('sword');
+                        currentPlayer.arme = new weapons(2, 14);
+                        $('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').removeClass('spear');
+                    }else{};
+
+                    if($('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').hasClass('flail')){
+                        $(currentPlayer).removeClass('sword');
+                        currentPlayer.arme = new weapons(3, 13);
+                        $('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').removeClass('flail');
+                    }else{};
+
+                    if($('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').hasClass('longsword')){
+                        $(currentPlayer).removeClass('sword');
+                        currentPlayer.arme = new weapons(4, 15);
+                        $('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').removeClass('longsword');
+                    }else{};
+
+                    if($('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').hasClass('crystalsword')){
+                        $(currentPlayer).removeClass('sword');
+                        currentPlayer.arme = new weapons(5, 17);
+                        $('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').removeClass('crystalsword');
+                    }else{};
+/*                 }
+                else; */
+            };
+        }
+    }
+    updatePlayersStats(tableauJoueurs);
 }
+
+
 
     /* Fin Mouvements */
 
