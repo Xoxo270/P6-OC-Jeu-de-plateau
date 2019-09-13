@@ -312,7 +312,7 @@ let currentPlayer;
                         currentPlayer.arme = new weapons(5);
                     }else{};
 
-                    /* if($('.cases[x=' + (initialX - i) + '][y=' + (cibleY) + ']').hasClass('sword')){
+                     /* if($('.cases[x=' + (initialX - i) + '][y=' + (cibleY) + ']').hasClass('sword')){
                         $('.cases[x=' + (initialX - i) + '][y=' + (cibleY) + ']').removeClass('sword');
                         $('.cases[x=' + (initialX - i) + '][y=' + (cibleY) + ']').addClass('' + currentPlayer.arme.name + '');
                         $(currentPlayer).removeClass('' + currentPlayer.arme.name + '');
@@ -366,6 +366,13 @@ let currentPlayer;
                         $(currentPlayer).removeClass('' + currentPlayer.arme.name + '');
                         currentPlayer.arme = new weapons(5);
                     }else{};
+
+                    /* if($('.cases[x=' + (initialX + i) + '][y=' + (cibleY) + ']').hasClass('sword')){
+                        $('.cases[x=' + (initialX + i) + '][y=' + (cibleY) + ']').removeClass('sword');
+                        $('.cases[x=' + (initialX + i) + '][y=' + (cibleY) + ']').addClass('' + currentPlayer.arme.name + '');
+                        $(currentPlayer).removeClass('' + currentPlayer.arme.name + '');
+                        currentPlayer.arme = new weapons(6);
+                    }else{}; */
                 };
             }
         }
@@ -418,6 +425,13 @@ let currentPlayer;
                         $(currentPlayer).removeClass('' + currentPlayer.arme.name + '');
                         currentPlayer.arme = new weapons(5);
                     }else{};
+
+/*                     if($$('.cases[x=' + (cibleX) + '][y=' + (initialY - i) + ']').hasClass('sword')){
+                        $$('.cases[x=' + (cibleX) + '][y=' + (initialY - i) + ']').removeClass('sword');
+                        $$('.cases[x=' + (cibleX) + '][y=' + (initialY - i) + ']').addClass('' + currentPlayer.arme.name + '');
+                        $(currentPlayer).removeClass('' + currentPlayer.arme.name + '');
+                        currentPlayer.arme = new weapons(6);
+                    }else{};*/
                 };
             }
             else{
@@ -467,6 +481,15 @@ let currentPlayer;
                             $(currentPlayer).removeClass('' + currentPlayer.arme.name + '');
                             currentPlayer.arme = new weapons(5);
                         }else{};
+
+                        /* if($('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').hasClass('sword')){
+                            $('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').removeClass('sword');
+                            $('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').addClass('' + currentPlayer.arme.name + '');
+                            $(currentPlayer).removeClass('' + currentPlayer.arme.name + '');
+                            currentPlayer.arme = new weapons(6);
+                        }else{}; */
+
+
 
 
                         /* Ancienne écriture */

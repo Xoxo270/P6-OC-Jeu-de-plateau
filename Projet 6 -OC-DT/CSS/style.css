@@ -25,7 +25,9 @@ body{
         display: flex;
         flex-direction: row;
     }
-
+    h1{
+        color: #ffffff;
+    }
     /* Map */
 
     #map {
@@ -104,6 +106,9 @@ body{
     }
     .crystalsword{
         background: url("../images/crystalSword.png");
+    }
+    .sword{
+        background: url("../images/sword.png");
     }
 
      /* Fin Armes */
