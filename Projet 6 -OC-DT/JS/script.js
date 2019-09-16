@@ -319,6 +319,8 @@ let currentPlayer;
                         currentPlayer.arme = new weapons(6);
                     }else{}; */
                 };
+                console.log(tableauJoueurs[0].arme);
+                console.log(tableauJoueurs[1].arme);
             }
             else{
                 let deplacementBas = (cibleX - initialX);
@@ -374,6 +376,8 @@ let currentPlayer;
                         currentPlayer.arme = new weapons(6);
                     }else{}; */
                 };
+                console.log(tableauJoueurs[0].arme);
+                console.log(tableauJoueurs[1].arme);
             }
         }
         else{
@@ -394,7 +398,7 @@ let currentPlayer;
                         $('.cases[x=' + (cibleX) + '][y=' + (initialY - i) + ']').removeClass('dagger');
                         $('.cases[x=' + (cibleX) + '][y=' + (initialY - i) + ']').addClass('' + currentPlayer.arme.name + '');
                         $(currentPlayer).removeClass('' + currentPlayer.arme.name + '');
-                        $(currentPlayer).addClass('dagger');
+                        
                         currentPlayer.arme =new weapons(1);
                     }else{};
 
@@ -433,20 +437,23 @@ let currentPlayer;
                         currentPlayer.arme = new weapons(6);
                     }else{};*/
                 };
+                console.log(tableauJoueurs[0].arme);
+                console.log(tableauJoueurs[1].arme);
             }
             else{
                 let deplacementDroite = (cibleY - initialY);
 
-                for(let i = 1; i <= deplacementDroite; i++){ /* On vérifie le +1 +2 +3 */
+                for(let i = 1; i <= deplacementDroite; i++){
 
                         if($('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').hasClass('axe')){
                             $('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').removeClass('axe');
                             $('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').addClass('' + currentPlayer.arme.name + '');
-                            $(currentPlayer).removeClass('sword');  
+                            $(currentPlayer).removeClass('' + currentPlayer.arme.name + '');  
                             currentPlayer.arme = new weapons(0);
                         }else{};
 
                         if($('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').hasClass('dagger')){
+
                             $('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').removeClass('dagger');
                             $('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').addClass('' + currentPlayer.arme.name + '');
                             $(currentPlayer).removeClass('' + currentPlayer.arme.name + '');
@@ -487,25 +494,13 @@ let currentPlayer;
                             $('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').addClass('' + currentPlayer.arme.name + '');
                             $(currentPlayer).removeClass('' + currentPlayer.arme.name + '');
                             currentPlayer.arme = new weapons(6);
+
+
+                            $(currentPlayer).addClass('dagger');
                         }else{}; */
-
-
-
-
-                        /* Ancienne écriture */
-
-                        
-                        /* if($('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').hasClass('axe')){ */
-                            /* $(currentPlayer).removeClass('sword'); */  /* on retire la classe d'arme par défaut */
-                            /* currentPlayer.arme = new weapons(0); */ /* id, damage */
-                            /* $('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').removeClass('axe'); */ /* on retire l'arme de la map */
-                        /* }else{}; */
-
-                        /* Fin ancienne écriture */
-
-
-
                 };
+                console.log(tableauJoueurs[0].arme);
+                console.log(tableauJoueurs[1].arme);
             }
         }
         updatePlayersStats(tableauJoueurs);
