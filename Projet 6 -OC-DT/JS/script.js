@@ -263,6 +263,7 @@ let currentPlayer;
                 currentPlayer = tableauJoueurs[0];
             }
             greyscaleAround(currentPlayer);
+            combatSystem();
         });
 
     };
@@ -481,6 +482,17 @@ let currentPlayer;
 /* Fin Mouvements */
 
 /* Combat */
+
+function combatSystem(){
+    if( tableauJoueurs[0].x === tableauJoueurs[1].x && tableauJoueurs[0].y + 1 === tableauJoueurs[1].y ||
+        tableauJoueurs[0].x === tableauJoueurs[1].x && tableauJoueurs[0].y - 1 === tableauJoueurs[1].y ||
+        tableauJoueurs[0].x + 1 === tableauJoueurs[1].x && tableauJoueurs[0].y === tableauJoueurs[1].y ||
+        tableauJoueurs[0].x - 1 === tableauJoueurs[1].x && tableauJoueurs[0].y === tableauJoueurs[1].y){
+            console.log('Le combat commence');
+        
+    }
+}
+
 /* Fin Combat */
 
 /* Appel des fonctions */
