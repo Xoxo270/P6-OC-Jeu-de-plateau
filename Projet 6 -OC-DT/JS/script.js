@@ -109,6 +109,11 @@ let currentPlayer;
                     this.name = "crystalsword";
                 break;
 
+/*                 case 6:
+                    this.damage = 10;
+                    this.name = "sword";
+                break; */
+
                 default:
                     this.damage = 10;
                     this.name = "sword";
@@ -275,52 +280,50 @@ let currentPlayer;
                         $('.cases[x=' + (initialX - i) + '][y=' + (cibleY) + ']').addClass('' + currentPlayer.arme.name + '');
                         $(currentPlayer).removeClass('' + currentPlayer.arme.name + '');
                         currentPlayer.arme = new weapons(0); 
-                    }else{};
+                    }
 
-                    if($('.cases[x=' + (initialX - i) + '][y=' + (cibleY) + ']').hasClass('dagger')){
+                    else if($('.cases[x=' + (initialX - i) + '][y=' + (cibleY) + ']').hasClass('dagger')){
                         $('.cases[x=' + (initialX - i) + '][y=' + (cibleY) + ']').removeClass('dagger');
                         $('.cases[x=' + (initialX - i) + '][y=' + (cibleY) + ']').addClass('' + currentPlayer.arme.name + '');
                         $(currentPlayer).removeClass('' + currentPlayer.arme.name + '');
                         currentPlayer.arme =new weapons(1);
-                    }else{};
+                    }
 
-                    if($('.cases[x=' + (initialX - i) + '][y=' + (cibleY) + ']').hasClass('spear')){
+                    else if($('.cases[x=' + (initialX - i) + '][y=' + (cibleY) + ']').hasClass('spear')){
                         $('.cases[x=' + (initialX - i) + '][y=' + (cibleY) + ']').removeClass('spear');
                         $('.cases[x=' + (initialX - i) + '][y=' + (cibleY) + ']').addClass('' + currentPlayer.arme.name + '');
                         $(currentPlayer).removeClass('' + currentPlayer.arme.name + '');
                         currentPlayer.arme = new weapons(2);
-                    }else{};
+                    }
 
-                    if($('.cases[x=' + (initialX - i) + '][y=' + (cibleY) + ']').hasClass('flail')){                       
+                    else if($('.cases[x=' + (initialX - i) + '][y=' + (cibleY) + ']').hasClass('flail')){                       
                         $('.cases[x=' + (initialX - i) + '][y=' + (cibleY) + ']').removeClass('flail');
                         $('.cases[x=' + (initialX - i) + '][y=' + (cibleY) + ']').addClass('' + currentPlayer.arme.name + '');
                         $(currentPlayer).removeClass('' + currentPlayer.arme.name + '');
                         currentPlayer.arme = new weapons(3);
-                    }else{};
+                    }
 
-                    if($('.cases[x=' + (initialX - i) + '][y=' + (cibleY) + ']').hasClass('longsword')){
+                    else if($('.cases[x=' + (initialX - i) + '][y=' + (cibleY) + ']').hasClass('longsword')){
                         $('.cases[x=' + (initialX - i) + '][y=' + (cibleY) + ']').removeClass('longsword');
                         $('.cases[x=' + (initialX - i) + '][y=' + (cibleY) + ']').addClass('' + currentPlayer.arme.name + '');
                         $(currentPlayer).removeClass('' + currentPlayer.arme.name + '');
                         currentPlayer.arme = new weapons(4);
-                    }else{};
+                    }
 
-                    if($('.cases[x=' + (initialX - i) + '][y=' + (cibleY) + ']').hasClass('crystalsword')){
+                    else if($('.cases[x=' + (initialX - i) + '][y=' + (cibleY) + ']').hasClass('crystalsword')){
                         $('.cases[x=' + (initialX - i) + '][y=' + (cibleY) + ']').removeClass('crystalsword');
                         $('.cases[x=' + (initialX - i) + '][y=' + (cibleY) + ']').addClass('' + currentPlayer.arme.name + '');
                         $(currentPlayer).removeClass('' + currentPlayer.arme.name + '');
                         currentPlayer.arme = new weapons(5);
-                    }else{};
+                    }
 
-                     /* if($('.cases[x=' + (initialX - i) + '][y=' + (cibleY) + ']').hasClass('sword')){
+                    else if($('.cases[x=' + (initialX - i) + '][y=' + (cibleY) + ']').hasClass('sword')){
                         $('.cases[x=' + (initialX - i) + '][y=' + (cibleY) + ']').removeClass('sword');
                         $('.cases[x=' + (initialX - i) + '][y=' + (cibleY) + ']').addClass('' + currentPlayer.arme.name + '');
                         $(currentPlayer).removeClass('' + currentPlayer.arme.name + '');
                         currentPlayer.arme = new weapons(6);
-                    }else{}; */
+                    }
                 };
-                console.log(tableauJoueurs[0].arme);
-                console.log(tableauJoueurs[1].arme);
             }
             else{
                 let deplacementBas = (cibleX - initialX);
@@ -332,52 +335,44 @@ let currentPlayer;
                         $('.cases[x=' + (initialX + i) + '][y=' + (cibleY) + ']').addClass('' + currentPlayer.arme.name + '');
                         $(currentPlayer).removeClass('' + currentPlayer.arme.name + '');
                         currentPlayer.arme = new weapons(0);
-                    }else{};
-
-                    if($('.cases[x=' + (initialX + i) + '][y=' + (cibleY) + ']').hasClass('dagger')){
+                    }
+                    else if($('.cases[x=' + (initialX + i) + '][y=' + (cibleY) + ']').hasClass('dagger')){
                         $('.cases[x=' + (initialX + i) + '][y=' + (cibleY) + ']').removeClass('dagger');
                         $('.cases[x=' + (initialX + i) + '][y=' + (cibleY) + ']').addClass('' + currentPlayer.arme.name + '');
                         $(currentPlayer).removeClass('' + currentPlayer.arme.name + '');
                         currentPlayer.arme =new weapons(1);
-                    }else{};
-
-                    if($('.cases[x=' + (initialX + i) + '][y=' + (cibleY) + ']').hasClass('spear')){
+                    }
+                    else if($('.cases[x=' + (initialX + i) + '][y=' + (cibleY) + ']').hasClass('spear')){
                         $('.cases[x=' + (initialX + i) + '][y=' + (cibleY) + ']').removeClass('spear');
                         $('.cases[x=' + (initialX + i) + '][y=' + (cibleY) + ']').addClass('' + currentPlayer.arme.name + '');
                         $(currentPlayer).removeClass('' + currentPlayer.arme.name + '');
                         currentPlayer.arme = new weapons(2);
-                    }else{};
-
-                    if($('.cases[x=' + (initialX + i) + '][y=' + (cibleY) + ']').hasClass('flail')){
+                    }
+                    else if($('.cases[x=' + (initialX + i) + '][y=' + (cibleY) + ']').hasClass('flail')){
                         $('.cases[x=' + (initialX + i) + '][y=' + (cibleY) + ']').removeClass('flail');
                         $('.cases[x=' + (initialX + i) + '][y=' + (cibleY) + ']').addClass('' + currentPlayer.arme.name + '');
                         $(currentPlayer).removeClass('' + currentPlayer.arme.name + '');
                         currentPlayer.arme = new weapons(3);
-                    }else{};
-
-                    if($('.cases[x=' + (initialX + i) + '][y=' + (cibleY) + ']').hasClass('longsword')){
+                    }
+                    else if($('.cases[x=' + (initialX + i) + '][y=' + (cibleY) + ']').hasClass('longsword')){
                         $('.cases[x=' + (initialX + i) + '][y=' + (cibleY) + ']').removeClass('longsword');
                         $('.cases[x=' + (initialX + i) + '][y=' + (cibleY) + ']').addClass('' + currentPlayer.arme.name + '');
                         $(currentPlayer).removeClass('' + currentPlayer.arme.name + '');
                         currentPlayer.arme = new weapons(4);
-                    }else{};
-
-                    if($('.cases[x=' + (initialX + i) + '][y=' + (cibleY) + ']').hasClass('crystalsword')){
+                    }
+                    else if($('.cases[x=' + (initialX + i) + '][y=' + (cibleY) + ']').hasClass('crystalsword')){
                         $('.cases[x=' + (initialX + i) + '][y=' + (cibleY) + ']').removeClass('crystalsword');
                         $('.cases[x=' + (initialX + i) + '][y=' + (cibleY) + ']').addClass('' + currentPlayer.arme.name + '');
                         $(currentPlayer).removeClass('' + currentPlayer.arme.name + '');
                         currentPlayer.arme = new weapons(5);
-                    }else{};
-
-                    /* if($('.cases[x=' + (initialX + i) + '][y=' + (cibleY) + ']').hasClass('sword')){
+                    }
+                    else if($('.cases[x=' + (initialX + i) + '][y=' + (cibleY) + ']').hasClass('sword')){
                         $('.cases[x=' + (initialX + i) + '][y=' + (cibleY) + ']').removeClass('sword');
                         $('.cases[x=' + (initialX + i) + '][y=' + (cibleY) + ']').addClass('' + currentPlayer.arme.name + '');
                         $(currentPlayer).removeClass('' + currentPlayer.arme.name + '');
                         currentPlayer.arme = new weapons(6);
-                    }else{}; */
+                    }
                 };
-                console.log(tableauJoueurs[0].arme);
-                console.log(tableauJoueurs[1].arme);
             }
         }
         else{
@@ -391,54 +386,44 @@ let currentPlayer;
                         $('.cases[x=' + (cibleX) + '][y=' + (initialY - i) + ']').addClass('' + currentPlayer.arme.name + '');
                         $(currentPlayer).removeClass('' + currentPlayer.arme.name + '');
                         currentPlayer.arme = new weapons(0);
-
-                    }else{};
-
-                    if($('.cases[x=' + (cibleX) + '][y=' + (initialY - i) + ']').hasClass('dagger')){
+                    }
+                    else if($('.cases[x=' + (cibleX) + '][y=' + (initialY - i) + ']').hasClass('dagger')){
                         $('.cases[x=' + (cibleX) + '][y=' + (initialY - i) + ']').removeClass('dagger');
                         $('.cases[x=' + (cibleX) + '][y=' + (initialY - i) + ']').addClass('' + currentPlayer.arme.name + '');
                         $(currentPlayer).removeClass('' + currentPlayer.arme.name + '');
-                        
                         currentPlayer.arme =new weapons(1);
-                    }else{};
-
-                    if($('.cases[x=' + (cibleX) + '][y=' + (initialY - i) + ']').hasClass('spear')){
+                    }
+                    else if($('.cases[x=' + (cibleX) + '][y=' + (initialY - i) + ']').hasClass('spear')){
                         $('.cases[x=' + (cibleX) + '][y=' + (initialY - i) + ']').removeClass('spear');
                         $('.cases[x=' + (cibleX) + '][y=' + (initialY - i) + ']').addClass('' + currentPlayer.arme.name + '');
                         $(currentPlayer).removeClass('' + currentPlayer.arme.name + '');
                         currentPlayer.arme = new weapons(2);
-                    }else{};
-
-                    if($('.cases[x=' + (cibleX) + '][y=' + (initialY - i) + ']').hasClass('flail')){
+                    }
+                    else if($('.cases[x=' + (cibleX) + '][y=' + (initialY - i) + ']').hasClass('flail')){
                         $('.cases[x=' + (cibleX) + '][y=' + (initialY - i) + ']').removeClass('flail');
                         $('.cases[x=' + (cibleX) + '][y=' + (initialY - i) + ']').addClass('' + currentPlayer.arme.name + '');
                         $(currentPlayer).removeClass('' + currentPlayer.arme.name + '');
                         currentPlayer.arme = new weapons(3);
-                    }else{};
-
-                    if($('.cases[x=' + (cibleX) + '][y=' + (initialY - i) + ']').hasClass('longsword')){
+                    }
+                    else if($('.cases[x=' + (cibleX) + '][y=' + (initialY - i) + ']').hasClass('longsword')){
                         $('.cases[x=' + (cibleX) + '][y=' + (initialY - i) + ']').removeClass('longsword');
                         $('.cases[x=' + (cibleX) + '][y=' + (initialY - i) + ']').addClass('' + currentPlayer.arme.name + '');
                         $(currentPlayer).removeClass('' + currentPlayer.arme.name + '');
                         currentPlayer.arme = new weapons(4);
-                    }else{};
-
-                    if($('.cases[x=' + (cibleX) + '][y=' + (initialY - i) + ']').hasClass('crystalsword')){
+                    }
+                    else if($('.cases[x=' + (cibleX) + '][y=' + (initialY - i) + ']').hasClass('crystalsword')){
                         $('.cases[x=' + (cibleX) + '][y=' + (initialY - i) + ']').removeClass('crystalsword');
                         $('.cases[x=' + (cibleX) + '][y=' + (initialY - i) + ']').addClass('' + currentPlayer.arme.name + '');
                         $(currentPlayer).removeClass('' + currentPlayer.arme.name + '');
                         currentPlayer.arme = new weapons(5);
-                    }else{};
-
-/*                     if($$('.cases[x=' + (cibleX) + '][y=' + (initialY - i) + ']').hasClass('sword')){
-                        $$('.cases[x=' + (cibleX) + '][y=' + (initialY - i) + ']').removeClass('sword');
-                        $$('.cases[x=' + (cibleX) + '][y=' + (initialY - i) + ']').addClass('' + currentPlayer.arme.name + '');
+                    }
+                    else if($('.cases[x=' + (cibleX) + '][y=' + (initialY - i) + ']').hasClass('sword')){
+                        $('.cases[x=' + (cibleX) + '][y=' + (initialY - i) + ']').removeClass('sword');
+                        $('.cases[x=' + (cibleX) + '][y=' + (initialY - i) + ']').addClass('' + currentPlayer.arme.name + '');
                         $(currentPlayer).removeClass('' + currentPlayer.arme.name + '');
                         currentPlayer.arme = new weapons(6);
-                    }else{};*/
+                    } 
                 };
-                console.log(tableauJoueurs[0].arme);
-                console.log(tableauJoueurs[1].arme);
             }
             else{
                 let deplacementDroite = (cibleY - initialY);
@@ -450,57 +435,44 @@ let currentPlayer;
                             $('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').addClass('' + currentPlayer.arme.name + '');
                             $(currentPlayer).removeClass('' + currentPlayer.arme.name + '');  
                             currentPlayer.arme = new weapons(0);
-                        }else{};
-
-                        if($('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').hasClass('dagger')){
+                        }else if($('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').hasClass('dagger')){
 
                             $('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').removeClass('dagger');
                             $('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').addClass('' + currentPlayer.arme.name + '');
                             $(currentPlayer).removeClass('' + currentPlayer.arme.name + '');
                             currentPlayer.arme =new weapons(1);
-                        }else{};
-
-                        if($('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').hasClass('spear')){
+                        }
+                        else if($('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').hasClass('spear')){
                             $('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').removeClass('spear');
                             $('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').addClass('' + currentPlayer.arme.name + '');
                             $(currentPlayer).removeClass('' + currentPlayer.arme.name + '');
-                            currentPlayer.arme = new weapons(2);
-                            
-                        }else{};
-
-                        if($('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').hasClass('flail')){
+                            currentPlayer.arme = new weapons(2);                       
+                        }
+                        else if($('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').hasClass('flail')){
                             $('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').removeClass('flail');
                             $('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').addClass('' + currentPlayer.arme.name + '');
                             $(currentPlayer).removeClass('' + currentPlayer.arme.name + '');
                             currentPlayer.arme = new weapons(3);
-                        }else{};
-
-                        if($('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').hasClass('longsword')){
+                        }
+                        else if($('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').hasClass('longsword')){
                             $('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').removeClass('longsword');
                             $('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').addClass('' + currentPlayer.arme.name + '');
                             $(currentPlayer).removeClass('' + currentPlayer.arme.name + '');
                             currentPlayer.arme = new weapons(4);
-                        }else{};
-
-                        if($('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').hasClass('crystalsword')){
+                        }
+                        else if($('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').hasClass('crystalsword')){
                             $('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').removeClass('crystalsword');
                             $('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').addClass('' + currentPlayer.arme.name + '');
                             $(currentPlayer).removeClass('' + currentPlayer.arme.name + '');
                             currentPlayer.arme = new weapons(5);
-                        }else{};
-
-                        /* if($('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').hasClass('sword')){
+                        }
+                        else if($('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').hasClass('sword')){
                             $('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').removeClass('sword');
                             $('.cases[x=' + (cibleX) + '][y=' + (initialY + i) + ']').addClass('' + currentPlayer.arme.name + '');
                             $(currentPlayer).removeClass('' + currentPlayer.arme.name + '');
                             currentPlayer.arme = new weapons(6);
-
-
-                            $(currentPlayer).addClass('dagger');
-                        }else{}; */
+                        }
                 };
-                console.log(tableauJoueurs[0].arme);
-                console.log(tableauJoueurs[1].arme);
             }
         }
         updatePlayersStats(tableauJoueurs);
