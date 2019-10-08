@@ -81,6 +81,10 @@ body{
         width: 300px;
     }
 
+    .defense{
+       background-color: pink; 
+    }
+
     .grayscale{
         filter: grayscale(100%);
     }
