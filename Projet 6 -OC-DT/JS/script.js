@@ -164,6 +164,7 @@ class characters {
     this.arme = arme;
     this.x = x;
     this.y = y;
+    this.defense = false;
   }
 };
 
@@ -475,23 +476,34 @@ function combatSystem() {
     tableauJoueurs[0].x - 1 === tableauJoueurs[1].x && tableauJoueurs[0].y === tableauJoueurs[1].y) {
     console.log('Le combat commence');
     console.log(tableauJoueurs);
+    console.log(currentPlayer);
+    if (currentPlayer == tableauJoueurs[0]){
+      currentPlayer = tableauJoueurs[1];
+    }else{
+      currentPlayer = tableauJoueurs[0];
+    }
 
     /* Flush la map */
-    $('#map').html('<h1>Le Combat à mort commence</h1>');
+    $('#map').html('<h1>Le Combat à mort commence.</h1>');
+    $('#map').append('<h1>Choisissez votre action sous votre personnage : </h1>');
     cbtTurns(); 
   }
 };
 
 function cbtTurns() {
   if (currentPlayer == tableauJoueurs[0]) {
+    tableauJoueurs[0].defense = false;
     $('#boutonsJ1').html('<button id="boutonAtk1" type="button"> Attaquer </button> <button id="boutonDef1" type="button"> Se défendre </button>');
     $('#boutonsJ2').html('');
 
     $('#boutonAtk1').off('click');
     $('#boutonAtk1').on('click', function () {
-      tableauJoueurs[1].pv = tableauJoueurs[1].pv - tableauJoueurs[0].arme.damage;
+      if (tableauJoueurs[1].defense){
+        tableauJoueurs[1].pv = tableauJoueurs[1].pv - (tableauJoueurs[0].arme.damage / 2);
+      }else{
+        tableauJoueurs[1].pv = tableauJoueurs[1].pv - tableauJoueurs[0].arme.damage;
+      }
       updatePlayersStats(tableauJoueurs);
-      console.log('bouton attaque 1');
       if (tableauJoueurs[1].pv <= 0) {
         $('#map').html('<h1> Le joueur 1 remporte la partie ! </h1>');
         $('#boutonsJ1').html('');
@@ -502,9 +514,8 @@ function cbtTurns() {
     });
     $('#boutonDef1').off('click');
     $('#boutonDef1').on('click', function () {
-      tableauJoueurs[1].arme.damage = tableauJoueurs[1].arme.damage / 2;
+      tableauJoueurs[0].defense = true;
       updatePlayersStats(tableauJoueurs);
-      console.log('bouton Def 1');
       if (tableauJoueurs[1].pv <= 0) {
         $('#map').html('<h1> Le joueur 1 remporte la partie ! </h1>');
         $('#boutonsJ1').html('');
@@ -514,14 +525,18 @@ function cbtTurns() {
       }
     });
   } else {
+    tableauJoueurs[1].defense = false;
     $('#boutonsJ2').html('<button id="boutonAtk2" type="button"> Attaquer </button> <button id="boutonDef2" type="button"> Se défendre </button>');
     $('#boutonsJ1').html('');
 
     $('#boutonAtk2').off('click');
     $('#boutonAtk2').on('click', function () {
-      tableauJoueurs[0].pv = tableauJoueurs[0].pv - tableauJoueurs[1].arme.damage;
+      if (tableauJoueurs[0].defense){
+        tableauJoueurs[0].pv = tableauJoueurs[0].pv - (tableauJoueurs[1].arme.damage / 2);
+      }else{
+        tableauJoueurs[0].pv = tableauJoueurs[0].pv - tableauJoueurs[1].arme.damage;
+      }
       updatePlayersStats(tableauJoueurs);
-      console.log('bouton attaque 2');
       if (tableauJoueurs[0].pv <= 0) {
         $('#map').html('<h1> Le joueur 2 remporte la partie ! </h1>');
         $('#boutonsJ2').html('');
@@ -532,9 +547,9 @@ function cbtTurns() {
     });
     $('#boutonDef2').off('click');
     $('#boutonDef2').on('click', function () {
-      tableauJoueurs[0].arme.damage = tableauJoueurs[0].arme.damage / 2;
+      tableauJoueurs[1].defense = true;
       updatePlayersStats(tableauJoueurs);
-      console.log('bouton Def 2');
+
       if (tableauJoueurs[0].pv <= 0) {
         $('#map').html('<h1> Le joueur 2 remporte la partie ! </h1>');
         $('#boutonsJ2').html('');
