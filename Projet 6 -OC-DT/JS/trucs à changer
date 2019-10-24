@@ -1,6 +1,0 @@
-- L'écran de fin de combat n'arrive pas.         DONE
-- Le joueur qui s'avance vers l'autre pour lancer le combat attaque en premier.      DONE
-- Le système de défense divise par 2 l'attaque à chaque fois qu'on clique dessus mais ne remet jamais les points d'attaque normaux.      DONE
-
-
-- Refaire le code en POO / Séparer les fonctions en petites fonctions réutilisables.
