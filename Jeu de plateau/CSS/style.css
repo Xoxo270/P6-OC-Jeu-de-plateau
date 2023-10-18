@@ -1,0 +1,134 @@
+body{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: black center center no-repeat;
+}
+    #rowChar{
+        display: flex;
+        flex-direction: row;
+       height: 100%;
+        width: 100%;
+    }
+
+    p{
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+    .ligne{
+        height: 82px;
+        width: 820px;
+        display: flex;
+        flex-direction: row;
+    }
+    h1{
+        color: #ffffff;
+        align-self: center;
+    }
+    #map>h1 {
+        margin-top: 120px;
+    }
+    
+    /* Map */
+
+    #map {
+        display: flex;
+        flex-direction: column;
+        outline:2px solid #000;
+        margin: auto; 
+        height:820px;
+	    width:820px;
+    }
+    .cases{
+        height: 80px;
+        width: 80px;
+        background: url("../images/dirt.png");
+        border: solid black 1px;
+    }
+    .rocks{
+        background: url("../images/rock.png")
+    }
+
+    /* Fin Map */
+
+    /* Personnages */
+    
+    #chevalier{
+        width: 300px;
+        height: 300px;
+    }
+    #ninja{
+        width: 300px;
+        height: 300px;
+    }
+    #char1{
+        display: flex;
+        align-self: center;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        background-color: gray!important;
+        height: 500px;
+        width: 300px;
+    }
+    #char2{
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+        align-items: center;
+        justify-content: center;
+        background-color: gray!important;
+        height: 500px;
+        width: 300px;
+    }
+
+    .defense{
+       background-color: pink; 
+    }
+
+    .grayscale{
+        filter: grayscale(100%);
+    }
+
+     /* Fin Personnages */
+
+    /* Armes */
+
+    .axe{
+        background: url("../images/axe.png");
+    }
+    .dagger{
+        background: url("../images/dagger.png");
+    }
+    .spear{
+        background: url("../images/spear.png");
+    }
+    .flail{
+        background: url("../images/flail.png");
+    }
+    .longsword{
+        background: url("../images/longSword.png");
+    }
+    .crystalsword{
+        background: url("../images/crystalSword.png");
+    }
+    .sword{
+        background: url("../images/sword.png");
+    }
+
+     /* Fin Armes */
+
+     /* Joueurs */
+
+    .knight{
+        background: url("../images/knightBG.png");
+    }
+    .ninja{
+        background: url("../images/ninjaBG.png");
+    }
+
+     /* Fin Joueurs */
