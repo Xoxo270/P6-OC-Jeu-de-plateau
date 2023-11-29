@@ -1,0 +1,19 @@
+{
+  "name": "p6-oc-jeu-de-plateau",
+  "version": "1.0.0",
+  "description": "Jeu de plateau tour par tour dans lequel les deux personnages peuvent se déplacer , ramasser des armes et se battre.",
+  "scripts": {
+    "start": "http-server -p 9000",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Daoulas Thomas",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Xoxo270/P6-OC-Jeu-de-plateau"
+  },
+  "homepage": "https://github.com/Xoxo270/P6-OC-Jeu-de-plateau#readme",
+  "dependencies": {
+    "http-server": "^0.12.3"
+  }
+}
